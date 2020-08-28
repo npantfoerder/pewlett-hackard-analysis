@@ -13,7 +13,9 @@ As baby boomers are beginning to retire at a rapid rate, a hypothetical company,
 
 - The retiring_titles.csv file shows that 29,414 Senior Engineers and 28,254 Senior Staffers will be retiring in the next few years
 
-- The number of employees eligible to participate in the mentorship program can be seen in the mentorship_eligibility.csv file below:
+- It can be seen that 1,549 employees are eligible to participate in the mentorship program in the mentorship_eligibility.csv file below:
+
+- Roughly 30% of each current employee type will be retiring in the next few years, while only  0.6% of current employees are eligibile to participate in the mentorship program. 
 
 *use images*
 
