@@ -26,7 +26,11 @@ The first few rows of the file can be seen below:
 ## Summary
 ### Insight into the "Silver Tsunami"
 - All together, 72,458 roles will need to be filled as the "silver tsunami" begins to make an impact. The breakdown of how many employees in each role will be retiring can be seen in the retiring_titles.csv file.
-- There are more than enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees. In fact, there are enough retirement-ready employees in every department so that each employee eligible for mentorship could have two mentors. Given these numbers, it could be a good idea to lessen the criteria for mentorship eligibility so that more retirement-ready employees can mentor the next generation.
+
+- There are more than enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees. In fact, there are enough retirement-ready employees in every department so that each mentorship eligible employee could have upwards of 37 mentors. Given these numbers, it could be a good idea to lessen the criteria for mentorship eligibility so that more retirement-ready employees can mentor the next generation of employees.
+
+- Changing the criteria for mentorship eligibility from employees born in 1965 by adding employees born in December of 1964 and January of 1966, doubles the number of mentorship eligible employees. This would allow retirement-ready employees to provide mentorship to more employees of the next generation. The numbers of mentorship eligible employees with the updated criteria can be seen below:
+
 *provide 2 additional queries or tables giving insight*
 
 #### Note to Grader
