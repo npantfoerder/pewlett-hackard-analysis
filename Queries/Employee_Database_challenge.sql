@@ -26,8 +26,7 @@ ORDER BY COUNT(emp_no) DESC;
 SELECT DISTINCT ON (e.emp_no) 
 	e.emp_no, e.first_name, e.last_name, e.birth_date,
     de.from_date, de.to_date, title
---	, t.from_date, t.to_date
--- INTO mentorship_eligibility
+INTO mentorship_eligibility
 FROM employees AS e
     INNER JOIN dept_emp AS de
         ON (e.emp_no = de.emp_no)
