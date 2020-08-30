@@ -31,7 +31,7 @@ The first few rows of the file can be seen below:
 
 - Changing the criteria for mentorship eligibility from employees born in 1965 by adding employees born in December of 1964 and January of 1966, doubles the number of mentorship eligible employees. This would allow retirement-ready employees to provide mentorship to more employees of the next generation. The numbers of mentorship eligible employees with the updated criteria can be seen below:
 
-<img src='https://github.com/npantfoerder/pewlett-hackard-analysis/blob/master/Images/new_ratios.png' width=500>
+<img src='https://github.com/npantfoerder/pewlett-hackard-analysis/blob/master/Images/new_eligibility.png' width=500>
 
 *provide 2 additional queries or tables giving insight*
 
