@@ -2,30 +2,33 @@
 
 ## Overview of the Analysis
 ### Purpose
-*explain the purpose of the analysis*
 As baby boomers are beginning to retire at a rapid rate, a hypothetical company, Pewlett Hackard, is preparing for thousands of job vacancies. Bobby, an HR analyst, needs help building an employee database with SQL and performing employee research. The assignment is to determine the number of retiring employees per title, and identify employees who are eligibile to participate in a mentorship program.
 
 ## Results
 ### Major Points from the Analysis
-*four bullets from the two deliverables*
+- The newly exported retirement_titles.csv file contains information about 72,458 employees who will be retiring in the next few years. This is 30.2% of the total employees currently working at the company. 
 
-- The newly exported retirement_titles.csv file contains information about 133,776 employees who will be retiring in the next few years
+- The retiring_titles.csv file shows that 25,916 Senior Engineers, 24,926 Senior Staffers, 9,285 Engineers, 7,636 Staff, 3,603 Technique Leaders, 1,090 Assistant Engineers, and 2 Managers will be retiring in the next few years. The table below shows that this is about 30% for each employee type, and 2 out of the 9 managers (22.2%).
 
-- The retiring_titles.csv file shows that 29,414 Senior Engineers and 28,254 Senior Staffers will be retiring in the next few years
+<img src='https://github.com/npantfoerder/pewlett-hackard-analysis/blob/master/Images/retiree_percents.png'>
 
-- It can be seen that 1,549 employees are eligible to participate in the mentorship program in the mentorship_eligibility.csv file below:
+- It can be seen that 1,549 employees are eligible to participate in the mentorship program in the mentorship_eligibility.csv file. This is only about 0.6% of all employees currently at the company.
+The first few rows of the file can be seen below:
 
-- Roughly 30% of each current employee type will be retiring in the next few years, while only  0.6% of current employees are eligibile to participate in the mentorship program. 
+<img src='https://github.com/npantfoerder/pewlett-hackard-analysis/blob/master/Images/mentorship_eligibility.png'>
 
-*use images*
+- Using the criteria of employees born in 1965 is not returning nearly enough employees for the mentorship. With 72,458 employees retiring and 1,549 employees eligible for mentorship, the retirement-ready to mentorship eligible employee ratio is about 46 to 1. The ratio by employee type can be seen below:
 
-<img src='https://github.com/npantfoerder/pewlett-hackard-analysis/blob/master/EmployeeDB.png'>
+<img src='https://github.com/npantfoerder/pewlett-hackard-analysis/blob/master/Images/ratios.png'>
 
 ## Summary
 ### Insight into the "Silver Tsunami"
-- How many roles will need to be filled as the "silveer tsunami" begins to make an impact?
-- Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees?
+- All together, 72,458 roles will need to be filled as the "silver tsunami" begins to make an impact. The breakdown of how many employees in each role will be retiring can be seen in the retiring_titles.csv file.
+- There are more than enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees. In fact, there are enough retirement-ready employees in every department so that each employee eligible for mentorship could have two mentors. Given these numbers, it could be a good idea to lessen the criteria for mentorship eligibility so that more retirement-ready employees can mentor the next generation.
 *provide 2 additional queries or tables giving insight*
+
+#### Note to Grader
+When creating the retirement_titles.csv file, I added a WHERE (titles.to_date = '9999-01-01') statement to find only retiring employees who are currently at the company. By doing this, the DISTINCT ON statement used in creating the unique_titles.csv file made no difference since the roles that ended were already filtered out. The count column in my retiring_titles.csv file also has lower numbers than the example from the module since I am not inlcuding employees that already left the company.
 
 #### Resources
 - Data Sources: departments.csv, dept_emp.csv, dept_manager.csv, employees.csv, salaries.csv, titles.csv
