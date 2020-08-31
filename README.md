@@ -35,7 +35,7 @@ The first few rows of the file can be seen below:
 
 - Grouping the retirement_titles table by birth year shows that the oldest retirement-ready employees make up the smallest group. After that, employees born in 1953, 1954 and 1956 all have similar sized groups.
 
-<img src='https://github.com/npantfoerder/pewlett-hackard-analysis/blob/master/Images/birth_year_counts.png' width=500>
+<img src='https://github.com/npantfoerder/pewlett-hackard-analysis/blob/master/Images/birth_year_counts.png' width=250>
 
 #### Note to Grader
 When creating the retirement_titles.csv file, I added a WHERE (titles.to_date = '9999-01-01') statement to find only retiring employees who are currently at the company. By doing this, the DISTINCT ON statement used in creating the unique_titles.csv file made no difference since the roles that ended were already filtered out. The count column in my retiring_titles.csv file also has lower numbers than the example from the module since I am not inlcuding employees that already left the company.
