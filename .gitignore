@@ -1,0 +1,7 @@
+.DS_Store
+Data/.DS_Store
+Data/emp_count.csv
+Data/emp_info.csv
+Data/retirement_info.csv
+Queries/.DS_Store
+Queries/queries.sql
