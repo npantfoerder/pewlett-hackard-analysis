@@ -107,4 +107,120 @@ FROM current_emp AS ce
 		ON (de.dept_no = d.dept_no)
 WHERE d.dept_name IN ('Sales', 'Development');
 
+-- Create a table for retirement titles
+SELECT e.emp_no, e.first_name, e.last_name,
+    t.title, t.from_date, t.to_date
+INTO retirement_titles
+FROM employees AS e
+    LEFT JOIN titles AS t
+        ON (e.emp_no = t.emp_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+ORDER BY e.emp_no;
+
+-- Find birth years of employees
+SELECT *, EXTRACT(YEAR FROM birth_date) AS birth_year
+FROM employees;
+
+-- Create a table for CURRENT employee info
+SELECT e.emp_no, e.first_name, e.last_name,
+    t.title, t.from_date, t.to_date
+INTO current_titles
+FROM employees AS e
+    LEFT JOIN titles AS t
+        ON (e.emp_no = t.emp_no)
+WHERE t.to_date = '9999-01-01'
+ORDER BY e.emp_no;
+
+-- Use Dictinct with Orderby to remove duplicate rows
+SELECT DISTINCT ON (emp_no) 
+	emp_no, first_name, last_name, title
+INTO unique_titles
+FROM retirement_titles AS rt
+ORDER BY emp_no, to_date DESC;
+
+-- Create a table for retiring title counts
+SELECT COUNT(emp_no), title
+INTO retiring_titles
+FROM retirement_titles
+GROUP BY title
+ORDER BY COUNT(emp_no) DESC;
+
+-- Create a table for mentorship eligibility
+SELECT DISTINCT ON (e.emp_no) 
+	e.emp_no, e.first_name, e.last_name, e.birth_date,
+    de.from_date, de.to_date, title
+INTO mentorship_eligibility
+FROM employees AS e
+    INNER JOIN dept_emp AS de
+        ON (e.emp_no = de.emp_no)
+	INNER JOIN titles AS t
+		ON (e.emp_no = t.emp_no)		
+WHERE (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+	AND (de.to_date = '9999-01-01')
+ORDER BY e.emp_no, t.to_date DESC;
+
+-- Create a table for current title counts
+SELECT COUNT(emp_no) AS current_emps, title
+INTO current_counts
+FROM current_titles 
+GROUP BY title
+ORDER BY COUNT(emp_no) DESC;
+
+-- Create a table for retiree counts
+SELECT COUNT(emp_no) AS retirees, title
+INTO retiree_counts
+FROM unique_titles
+GROUP BY title
+ORDER BY COUNT(emp_no) DESC;
+
+-- Create a table of eligible mentor counts
+SELECT COUNT(emp_no) AS mentors, title
+INTO mentor_counts
+FROM mentorship_eligibility
+GROUP BY title
+ORDER BY COUNT(emp_no) DESC;
+
+-- Join all current employee counts
+SELECT cc.*, retirees, mentors
+INTO current_info
+FROM current_counts AS cc
+	INNER JOIN retiree_counts AS rc
+		ON (cc.title = rc.title)
+	LEFT JOIN mentor_counts AS mc
+		ON (cc.title = mc.title)
+ORDER BY retirees DESC;
+
+-- Add percent of employees retiring by title
+ALTER TABLE current_info 
+ADD COLUMN r_percent FLOAT,
+ADD COLUMN m_percent FLOAT,
+ADD COLUMN r_per_m FLOAT;
+
+UPDATE current_info 
+SET r_percent = CAST(retirees AS FLOAT) / 
+   	CAST(current_emps AS FLOAT) * 100,
+ 	m_percent = CAST(mentors AS FLOAT) / 
+ 	CAST(current_emps AS FLOAT) * 100,
+	r_per_m = CAST(retirees AS FLOAT) / 
+	CAST(mentors AS FLOAT);
+
+-- Create a table for count sums
+SELECT SUM(current_emps) AS current,
+	SUM(retirees) AS retiring,
+	SUM(mentors) AS mentorship
+INTO sums
+FROM current_info;
+
+ALTER TABLE sums 
+ADD COLUMN r_percent FLOAT,
+ADD COLUMN m_percent FLOAT,
+ADD COLUMN r_per_m FLOAT;
+
+UPDATE sums 
+SET r_percent = CAST(retiring AS FLOAT) / 
+	CAST(current AS FLOAT) * 100,
+	m_percent = CAST(mentorship AS FLOAT) / 
+	CAST(current AS FLOAT) * 100,
+	r_per_m = CAST(retiring AS FLOAT) / 
+	CAST(mentorship AS FLOAT);
 
